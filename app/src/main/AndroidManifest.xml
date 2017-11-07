@@ -9,7 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginPage"></activity>
+        <activity android:name=".Login" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".Home" />
+        <activity android:name=".Profile" />
+        <activity android:name=".Search" />
+        <activity android:name=".Chat" />
+        <activity android:name=".SearchGroupInfo" />
+        <activity android:name=".ChatSettingsAdmin" />
+        <activity android:name=".ChatSettingsMember" />
+        <activity android:name=".ChatMemberProfile" />
+        <activity android:name=".SearchCreateGroup" />
+        <activity android:name=".SearchResults"></activity>
     </application>
 
 </manifest>
