@@ -14,7 +14,13 @@
         <activity android:name=".Home" />
         <activity android:name=".Profile" />
         <activity android:name=".Search" />
-        <activity android:name=".Chat"></activity>
+        <activity android:name=".Chat" />
+        <activity android:name=".SearchGroupInfo" />
+        <activity android:name=".ChatSettingsAdmin" />
+        <activity android:name=".ChatSettingsMember" />
+        <activity android:name=".ChatMemberProfile" />
+        <activity android:name=".SearchCreateGroup" />
+        <activity android:name=".SearchResults"></activity>
     </application>
 
 </manifest>
