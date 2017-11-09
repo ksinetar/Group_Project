@@ -74,28 +74,6 @@ public class Login extends Activity implements Button.OnClickListener {
         }
     }
 
-    public void createAccount(String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(Login.this, "Authentication Failed",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(Login.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                        }
-
-                        // ...
-                    }
-                });
-    }
-
     public void signIn(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -106,11 +84,11 @@ public class Login extends Activity implements Button.OnClickListener {
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
+
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
                             Toast.makeText(Login.this, "Authentication Failed",
                                     Toast.LENGTH_SHORT).show();
-
                         } else {
                             Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Login.this, Home.class));
@@ -126,12 +104,21 @@ public class Login extends Activity implements Button.OnClickListener {
         switch (view.getId()) {
             case R.id.buttonRegister:
 
-                createAccount(edittextusername.getText().toString(), edittextpassword.getText().toString());
+                Intent Register = new Intent(this, SignUp.class);
+                this.startActivity(Register);
+                break;
 
             case R.id.buttonlogin:
 
-                signIn(edittextusername.getText().toString(), edittextpassword.getText().toString());
-
+                if ((edittextusername.getText().toString().isEmpty())) {
+                Toast.makeText(Login.this, "Authentication Failed",
+                        Toast.LENGTH_SHORT).show();
+                } else if (edittextpassword.getText().toString().isEmpty()) {
+                    Toast.makeText(Login.this, "Authentication Failed",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    signIn(edittextusername.getText().toString(), edittextpassword.getText().toString());
+                }
         }
     }
 }
