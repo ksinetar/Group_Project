@@ -20,7 +20,7 @@ public class Users {
 
 
     //Constructors
-    username = findViewById(R.id.username);
+
 
 
 
