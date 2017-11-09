@@ -119,7 +119,6 @@ public class Login extends Activity implements Button.OnClickListener {
                 } else {
                     signIn(edittextusername.getText().toString(), edittextpassword.getText().toString());
                 }
-
         }
     }
 }
