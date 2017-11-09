@@ -7,16 +7,16 @@ import com.example.kevin.group_project.R;
 public class Users {
 
     //Prop
-    private String username;
+    private String userName;
     private String email;
     private String password;
     private String gender;
     private String name;
     private String city;
     private String education;
-    // private () picture // need a data type to store picture
+    // private () profilePicture // need a data type to store picture
 
-    private Short dob;
+    private Short dateofBirth;
 
 
     //Constructors
