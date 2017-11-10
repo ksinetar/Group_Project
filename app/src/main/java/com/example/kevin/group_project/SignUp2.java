@@ -8,9 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class SignUp2 extends Activity implements Button.OnClickListener{
+public class SignUp2 extends Activity implements Button.OnClickListener {
 
     private EditText editTextName, editTextUniversity, editTextCity, editTextDateofbirth;
+    private Button buttonSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,9 @@ public class SignUp2 extends Activity implements Button.OnClickListener{
         editTextCity = findViewById(R.id.editTextCity);
         editTextDateofbirth = findViewById(R.id.editTextDateofbirth);
 
+        buttonSignUp = findViewById(R.id.buttonSignUp);
+        buttonSignUp.setOnClickListener(this);
+
         Spinner spinnerGender = findViewById(R.id.spinnerGender);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(SignUp2.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Gender));
@@ -31,6 +35,9 @@ public class SignUp2 extends Activity implements Button.OnClickListener{
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.buttonSignUp:
 
+        }
     }
 }

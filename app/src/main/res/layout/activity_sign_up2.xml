@@ -13,8 +13,9 @@
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
@@ -26,10 +27,13 @@
         android:id="@+id/editTextUniversity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editTextCity"
+        android:layout_marginTop="13dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="University"
+        android:inputType="textPersonName"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="199dp" />
 
@@ -40,6 +44,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/editTextName"
+        android:layout_marginTop="13dp"
         android:ems="10"
         android:hint="City"
         android:inputType="textPersonName"
@@ -53,20 +58,39 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/spinnerGender"
+        android:layout_below="@+id/editTextUniversity"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Date of Birth"
         android:inputType="date"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="245dp" />
+
     <Spinner
         android:id="@+id/spinnerGender"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editTextDateofbirth"
-        android:layout_alignStart="@+id/editTextDateofbirth"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/editTextDateofbirth"
-        android:layout_marginTop="14dp" />
+        android:layout_marginTop="29dp" />
+
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#2965C9"
+        android:text="Sign Up"
+        android:textColor="#ffffff"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_editor_absoluteX="198dp"
+        tools:layout_editor_absoluteY="397dp" />
+
 
 
 </RelativeLayout>
