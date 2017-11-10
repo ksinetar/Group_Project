@@ -45,6 +45,8 @@ public class SignUp extends Activity implements Button.OnClickListener {
                 if ((editTextUsername.getText().toString().isEmpty())) {
                     Toast.makeText(SignUp.this, "Please Fill All Fields",
                             Toast.LENGTH_SHORT).show();
+                } else if (editTextUsername.getText().toString().isEmpty()) {
+                    //If username already exists on server send a Toast that says "Username Taken"
                 } else if (editTextPassword.getText().toString().isEmpty()) {
                     Toast.makeText(SignUp.this, "Please Fill All Fields",
                             Toast.LENGTH_SHORT).show();
