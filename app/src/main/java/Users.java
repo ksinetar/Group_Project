@@ -15,7 +15,7 @@ public class Users {
     private String city;
     private String education;
     // private () profilePicture // need a data type to store picture
-
+    // *** NEED TO CONVERT THESE TO STRINGS, CALL THEM AS WIDGET FIRST
     private Short dateofBirth;
 
 
