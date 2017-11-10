@@ -7,7 +7,6 @@ import com.example.kevin.group_project.R;
 public class Users {
 
     //Prop
-    private String userName;
     private String email;
     private String password;
     private String gender;

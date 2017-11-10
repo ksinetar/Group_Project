@@ -26,7 +26,8 @@
         <activity android:name=".ChatSettingsMember" />
         <activity android:name=".ChatMemberProfile" />
         <activity android:name=".SearchCreateGroup" />
-        <activity android:name=".SearchResults"></activity>
+        <activity android:name=".SearchResults" />
+        <activity android:name=".SignUp2"></activity>
     </application>
 
 </manifest>

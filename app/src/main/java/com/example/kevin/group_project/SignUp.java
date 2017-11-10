@@ -1,7 +1,10 @@
 package com.example.kevin.group_project;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -10,68 +13,84 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import static android.content.ContentValues.TAG;
+
 public class SignUp extends Activity implements Button.OnClickListener {
 
-    private EditText editTextUsername, editTextName, editTextEmail;
-    private EditText editTextPassword, editTextUniversity, editTextCity;
-    private EditText editTextDateofbirth;
+    private EditText editTextEmail, editTextPassword;
 
-    private Button buttonSignUp;
+    private Button buttonNext;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
-        editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
-        editTextUniversity = findViewById(R.id.editTextUniversity);
-        editTextCity = findViewById(R.id.editTextCity);
-        editTextDateofbirth = findViewById(R.id.editTextDateofbirth);
 
-        buttonSignUp = findViewById(R.id.buttonSignUp);
+        buttonNext = findViewById(R.id.buttonNext);
 
-        Spinner spinnerGender = findViewById(R.id.spinnerGender);
+        buttonNext.setOnClickListener(this);
 
-        buttonSignUp.setOnClickListener(this);
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Log.d(TAG, "onAuthStateChanged:signed_in" + user.getUid());
+                } else {
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+            }
+        };
 
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(SignUp.this,
-                    android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Gender));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGender.setAdapter(myAdapter);
+    }
 
+    public void createAccount(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(SignUp.this, "Authentication Failed",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(SignUp.this, "Registration Successful",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.buttonSignUp:
+            case R.id.buttonNext:
 
-                if ((editTextUsername.getText().toString().isEmpty())) {
+                if ((editTextEmail.getText().toString().isEmpty())) {
                     Toast.makeText(SignUp.this, "Please Fill All Fields",
                             Toast.LENGTH_SHORT).show();
-                } else if (editTextUsername.getText().toString().isEmpty()) {
-                    //If username already exists on server send Toast that says "Username Taken"
                 } else if (editTextPassword.getText().toString().isEmpty()) {
                     Toast.makeText(SignUp.this, "Please Fill All Fields",
                             Toast.LENGTH_SHORT).show();
-                } else if (editTextName.getText().toString().isEmpty()) {
-                    Toast.makeText(SignUp.this, "Please Fill All Fields",
-                            Toast.LENGTH_SHORT).show();
-                } else if (editTextEmail.getText().toString().isEmpty()) {
-                    Toast.makeText(SignUp.this, "Please Fill All Fields",
-                            Toast.LENGTH_SHORT).show();
-                } else if (editTextUniversity.getText().toString().isEmpty()) {
-                    Toast.makeText(SignUp.this, "Please Fill All Fields",
-                            Toast.LENGTH_SHORT).show();
-                } else if (editTextCity.getText().toString().isEmpty()) {
-                    Toast.makeText(SignUp.this, "Please Fill All Fields",
-                            Toast.LENGTH_SHORT).show();
                 } else {
-                    //Add code for adding provided info to Firebase, then take user to homepage
+                    createAccount(editTextEmail.getText().toString(), editTextPassword.getText().toString());
+                    Intent Next = new Intent(this, SignUp2.class);
+                    this.startActivity(Next);
+                    break;
                 }
         }
     }
