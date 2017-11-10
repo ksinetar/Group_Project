@@ -13,12 +13,13 @@
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextUsername"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
+        android:layout_alignStart="@+id/editTextUsername"
+        android:layout_marginTop="28dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Name"
+        android:inputType="textPersonName"
         android:textSize="18sp"
         tools:layout_editor_absoluteX="50dp"
         tools:layout_editor_absoluteY="16dp" />
@@ -106,12 +107,22 @@
         android:id="@+id/buttonSignUp"
         android:layout_width="match_parent"
         android:layout_height="66dp"
+        android:layout_alignLeft="@+id/spinnerGender"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="41dp"
+        android:layout_alignStart="@+id/spinnerGender"
+        android:layout_marginBottom="12dp"
+        android:background="#d1d1d1"
         android:text="Sign Up"
         android:textColor="#444444"
-        android:background="#d1d1d1"
         tools:layout_editor_absoluteY="403dp" />
+
+    <Spinner
+        android:id="@+id/spinnerGender"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextDateofbirth"
+        android:layout_alignStart="@+id/editTextDateofbirth"
+        android:layout_below="@+id/editTextDateofbirth"
+        android:layout_marginTop="14dp" />
 
 </RelativeLayout>

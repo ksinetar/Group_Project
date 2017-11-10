@@ -12,7 +12,6 @@ public class Group {
 
     private short creationDate;
 
-
     private String category;
     private String groupName;
     private String groupDescription;
