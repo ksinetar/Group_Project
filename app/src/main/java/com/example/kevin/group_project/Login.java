@@ -116,9 +116,6 @@ public class Login extends Activity implements Button.OnClickListener {
                             Toast.LENGTH_SHORT).show();
                 } else {
                     signIn(edittextusername.getText().toString(), edittextpassword.getText().toString());
-                    Intent LogIn = new Intent(this, Home.class);
-                    this.startActivity(LogIn);
-                    break;
                 }
         }
     }
