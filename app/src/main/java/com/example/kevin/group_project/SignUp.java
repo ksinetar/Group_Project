@@ -80,16 +80,12 @@ public class SignUp extends Activity implements Button.OnClickListener {
         switch (view.getId()) {
             case R.id.buttonNext:
 
-                if ((editTextEmail.getText().toString().isEmpty())) {
-                    Toast.makeText(SignUp.this, "Please Fill All Fields",
-                            Toast.LENGTH_SHORT).show();
-                } else if (editTextPassword.getText().toString().isEmpty()) {
-                    Toast.makeText(SignUp.this, "Please Fill All Fields",
-                            Toast.LENGTH_SHORT).show();
-                } else if (!editTextEmail.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
+                if (!editTextEmail.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
                     editTextEmail.setError("Invalid Email Address");
+
                 } else if (editTextPassword.getText().length() < 6) {
                     editTextPassword.setError("Password Must Be At Least 6 Characters");
+
                 } else {
                     createAccount(editTextEmail.getText().toString(), editTextPassword.getText().toString());
                     Intent Next = new Intent(this, SignUp2.class);
