@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.ContentValues.TAG;
 
@@ -64,12 +66,17 @@ public class SignUp extends Activity implements Button.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
+
                         if (!task.isSuccessful()) {
                             Toast.makeText(SignUp.this, "Authentication Failed",
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(SignUp.this, "Registration Successful",
                                     Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("groupproject-572ac");
+                            ref.child(user.getUid()).setValue(Users);
+
                         }
                     }
                 });
