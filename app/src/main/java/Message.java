@@ -10,7 +10,6 @@ public class Message {
 
     //Prop
     public short timeStamp;
-
     public String messageSender;
     public String messageContent;
 
