@@ -17,20 +17,23 @@ public class Group {
     private String category;
     private String groupName;
     private String groupDescription;
-
     private Boolean privacy;
-
     // private () groupPicture // need a data type to store picture
 
 
+    public Group(){
+    }
 
-    //Constructors
+    public Group(double memberCount, double categoryRank, Date creationDate, String category, String groupName, String groupDescription, Boolean privacy){
+        this.memberCount = memberCount;
+        this.categoryRank = categoryRank;
+        this.creationDate = creationDate;
+        this.category = category;
+        this.groupName = groupName;
+        this.groupDescription = groupDescription;
+        this.privacy = privacy;
 
 
-
-
-
-
-    //Methods
+    }
 
 }

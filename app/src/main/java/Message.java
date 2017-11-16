@@ -1,5 +1,7 @@
 import com.example.kevin.group_project.R;
 
+import java.util.Date;
+
 /**
  * Created by kgay on 11/9/17.
  */
@@ -7,18 +9,20 @@ import com.example.kevin.group_project.R;
 public class Message {
 
     //Prop
-    private short timeStamp;
+    public short timeStamp;
 
-    private String messageSender;
-    private String messageContent;
+    public String messageSender;
+    public String messageContent;
 
+    public Message(){
+    }
 
-    //Constructors
+    public Message(short timeStamp, String messageSender, String messageContent){
+        this.timeStamp = timeStamp;
+        this.messageSender = messageSender;
+        this.messageContent = messageContent;
 
+    }
 
-
-
-
-
-    //Methods
 }
+

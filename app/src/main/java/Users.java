@@ -9,25 +9,27 @@ import java.util.Date;
 public class Users {
 
     //Prop
-    private String email;
-    private String password;
-    private String gender;
-    private String name;
-    private String city;
-    private String education;
-    // private () profilePicture // need a data type to store picture
-
-    private Date dateofBirth;
+    public String email;
+    public String gender;
+    public String name;
+    public String city;
+    public String education;
+    public Date dateofBirth;
+    // public () profilePicture // need a data type to store picture
 
 
-    //Constructors
+    public Users(){
+    }
+
+    public Users(String email, String gender, String name, String city, String education, Date dateofBirth){
+        this.email = email;
+        this.gender = gender;
+        this.name = name;
+        this.city = city;
+        this.education = education;
+        this.dateofBirth = dateofBirth;
 
 
-
-
-
-
-    //Methods
-
+    }
 
 }
