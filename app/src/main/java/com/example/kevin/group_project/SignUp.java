@@ -37,6 +37,7 @@ public class SignUp extends Activity implements Button.OnClickListener {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mDatabase;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
