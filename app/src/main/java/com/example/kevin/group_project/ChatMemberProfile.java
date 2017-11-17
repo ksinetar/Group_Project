@@ -15,7 +15,7 @@ public class ChatMemberProfile extends Activity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_member_profile);
-
+/////
         textViewMemberProfileName = findViewById(R.id.textViewMemberProfileName);
         textViewMPBio = findViewById(R.id.textViewMPBio);
         textViewMPBioFB = findViewById(R.id.textViewMPBioFB);
