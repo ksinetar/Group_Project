@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUp" />
-        <activity android:name=".Home" />
         <activity android:name=".Profile" />
         <activity android:name=".Search" />
         <activity android:name=".Chat" />
@@ -27,7 +26,10 @@
         <activity android:name=".ChatMemberProfile" />
         <activity android:name=".SearchCreateGroup" />
         <activity android:name=".SearchResults" />
-        <activity android:name=".SignUp2"></activity>
+        <activity android:name=".SignUp2" />
+        <activity
+            android:name=".MainPage"
+            android:label="@string/title_activity_main_page"></activity>
     </application>
 
 </manifest>

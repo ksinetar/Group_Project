@@ -58,7 +58,7 @@ public class SignUp2 extends Activity implements Button.OnClickListener {
         switch (view.getId()) {
             case R.id.buttonSignUp:
                 uploadToFirebase();
-                Intent GoHome = new Intent(this, Home.class);
+                Intent GoHome = new Intent(this, MainPage.class);
                 this.startActivity(GoHome);
 
                 break;
