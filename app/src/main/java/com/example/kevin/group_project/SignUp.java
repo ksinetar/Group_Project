@@ -2,8 +2,10 @@ package com.example.kevin.group_project;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,8 +20,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import static android.content.ContentValues.TAG;
 
@@ -32,6 +38,11 @@ public class SignUp extends Activity implements Button.OnClickListener {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
+    String userID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +54,9 @@ public class SignUp extends Activity implements Button.OnClickListener {
         buttonNext = findViewById(R.id.buttonNext);
 
         buttonNext.setOnClickListener(this);
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -73,9 +87,6 @@ public class SignUp extends Activity implements Button.OnClickListener {
                         } else {
                             Toast.makeText(SignUp.this, "Registration Successful",
                                     Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("groupproject-572ac");
-                            ref.child(user.getUid()).setValue(Users);
 
                         }
                     }
@@ -96,7 +107,9 @@ public class SignUp extends Activity implements Button.OnClickListener {
                 } else {
                     createAccount(editTextEmail.getText().toString(), editTextPassword.getText().toString());
                     Intent Next = new Intent(this, SignUp2.class);
+                    Next.putExtra("EMAIL", editTextEmail.getText().toString());
                     this.startActivity(Next);
+
                     break;
                 }
         }
