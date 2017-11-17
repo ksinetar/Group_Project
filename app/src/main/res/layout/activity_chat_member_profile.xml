@@ -6,4 +6,98 @@
     android:layout_height="match_parent"
     tools:context="com.example.kevin.group_project.ChatMemberProfile">
 
+    <TextView
+        android:id="@+id/textViewPicture"
+        android:layout_width="122dp"
+        android:layout_height="132dp"
+        android:text="This will be a picture in the future"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="46dp" />
+
+    <TextView
+        android:id="@+id/textViewMemberProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Name:"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="89dp" />
+
+    <TextView
+        android:id="@+id/textViewMPNameFB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="idk how to do this yet"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="147dp" />
+
+    <TextView
+        android:id="@+id/textViewMPBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bio:"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="212dp" />
+
+    <TextView
+        android:id="@+id/textViewMPBioFB"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="this will be the persons biography"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="212dp" />
+
+    <TextView
+        android:id="@+id/textViewMPBirthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Birthday:"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="297dp" />
+
+    <TextView
+        android:id="@+id/textViewMPBirthdayFB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="this will be the birthday"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="297dp" />
+
+    <TextView
+        android:id="@+id/textViewMPEducation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Education:"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="392dp" />
+
+    <TextView
+        android:id="@+id/textViewMPEducationFB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="this will be their education"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="392dp" />
+
+    <TextView
+        android:id="@+id/textViewMPResidence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Residence:"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="476dp" />
+
+    <TextView
+        android:id="@+id/textViewMPResidenceFB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="this will be their residence"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="489dp" />
 </android.support.constraint.ConstraintLayout>
