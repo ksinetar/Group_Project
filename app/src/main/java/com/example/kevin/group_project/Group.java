@@ -1,3 +1,5 @@
+package com.example.kevin.group_project;
+
 import com.example.kevin.group_project.R;
 
 import java.util.Date;
@@ -11,9 +13,7 @@ public class Group {
     //Prop
     private double memberCount;
     private double categoryRank;
-
     private Date creationDate;
-
     private String category;
     private String groupName;
     private String groupDescription;

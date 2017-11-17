@@ -89,7 +89,7 @@ public class Login extends Activity implements Button.OnClickListener {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(Login.this, Home.class));
+                            startActivity(new Intent(Login.this, MainPage.class));
                         }
 
                         // ...
