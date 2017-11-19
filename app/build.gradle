@@ -21,8 +21,9 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-auth:10.0.0'
-    implementation 'com.google.firebase:firebase-database:10.0.0'
+    implementation 'com.google.firebase:firebase-auth:11.6.0'
+    implementation 'com.google.firebase:firebase-database:11.6.0'
+    compile 'com.firebaseui:firebase-ui-database:3.1.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support:support-vector-drawable:26.1.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
