@@ -44,7 +44,6 @@ public class Profile extends Activity implements Button.OnClickListener {
         final String user_id = mAuth.getCurrentUser().getUid();
 
 
-
         editTextName = findViewById(R.id.editTextName);
 
         mDatabaseUser_fullname = FirebaseDatabase.getInstance().getReference().child("users").child(user_id).child("fullname");
@@ -53,12 +52,9 @@ public class Profile extends Activity implements Button.OnClickListener {
         @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
             editTextName.setText(dataSnapshot.getValue(String.class));
-
             }
-
         @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
@@ -69,12 +65,9 @@ public class Profile extends Activity implements Button.OnClickListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 editTextEmail.setText(dataSnapshot.getValue(String.class));
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
@@ -85,12 +78,9 @@ public class Profile extends Activity implements Button.OnClickListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 editTextUniversity.setText(dataSnapshot.getValue(String.class));
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
@@ -102,12 +92,9 @@ public class Profile extends Activity implements Button.OnClickListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 editTextCity.setText(dataSnapshot.getValue(String.class));
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
@@ -119,12 +106,9 @@ public class Profile extends Activity implements Button.OnClickListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 editTextDateofbirth.setText(dataSnapshot.getValue(String.class));
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
