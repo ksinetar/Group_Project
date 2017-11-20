@@ -15,6 +15,7 @@ public class MainPage extends AppCompatActivity implements Button.OnClickListene
 
     private TextView mTextMessage;
     private Button buttonChat;
+    private Button buttonProfile;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,8 +43,10 @@ public class MainPage extends AppCompatActivity implements Button.OnClickListene
         setContentView(R.layout.activity_main_page);
 
         buttonChat = (Button) findViewById(R.id.buttonChat);
+        buttonProfile = (Button) findViewById(R.id.buttonProfile);
 
         buttonChat.setOnClickListener(this);
+        buttonProfile.setOnClickListener(this);
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -54,6 +57,9 @@ public class MainPage extends AppCompatActivity implements Button.OnClickListene
         if (view.equals(buttonChat)){
             Intent intentChat = new Intent(MainPage.this,Chat.class);
             this.startActivity(intentChat);
+        } else if (view.equals(buttonProfile)){
+            Intent intentProfile = new Intent(MainPage.this, Profile.class);
+            this.startActivity(intentProfile);
         }
 
     }
