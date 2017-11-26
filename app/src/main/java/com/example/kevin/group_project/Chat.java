@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
@@ -19,13 +20,14 @@ import com.google.firebase.database.Query;
 public class Chat extends Activity {
 
     private FirebaseListAdapter<ChatMessage> adapter;
+    private ListView listOfMessages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        //displayChatMessages();
+
 
         FloatingActionButton fab =
                 (FloatingActionButton)findViewById(R.id.fab);
@@ -50,21 +52,29 @@ public class Chat extends Activity {
                 input.setText("");
             }
         });
-    }
-    private void displayChatMessages() {
+
         ListView listOfMessages = (ListView) findViewById(R.id.list_of_messages);
 
+        displayChatMessages();
+    }
+    private void displayChatMessages() {
+
         //Tutorial Adapter method - can't get it to compile
-        //adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
-        //R.layout.message, FirebaseDatabase.getInstance().getReference())
+
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference myRef = database.getReference();
+
+
+//        adapter = new FirebaseListAdapter<ChatMessage>(ChatMessage.class, R.layout.message, myRef) {
+
 
         //Found this online, compiles but then app crashes when it runs
         Query query = FirebaseDatabase.getInstance().getReference();
         FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
-                .setQuery(query, ChatMessage.class)
-                .build();
+                .setLayout(R.layout.message)
+                .setQuery(query, ChatMessage.class).build();
 
-        adapter = new FirebaseListAdapter<ChatMessage>(options){
+        adapter = new FirebaseListAdapter<ChatMessage>(options) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
                 // Get references to the views of message.xml
