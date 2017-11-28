@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.app.Activity;
+
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class MainPage extends AppCompatActivity implements Button.OnClickListener {
 
@@ -64,4 +67,15 @@ public class MainPage extends AppCompatActivity implements Button.OnClickListene
 
     }
 
+//    @Override
+//    public void onTokenRefresh() {
+//        // Get updated InstanceID token.
+//        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+//        Log.d(TAG, "Refreshed token: " + refreshedToken);
+//
+//        // If you want to send messages to this application instance or
+//        // manage this apps subscriptions on the server side, send the
+//        // Instance ID token to your app server.
+//        sendRegistrationToServer(refreshedToken);
+//    }
 }
