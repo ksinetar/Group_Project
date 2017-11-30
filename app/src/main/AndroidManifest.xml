@@ -24,12 +24,13 @@
         <activity android:name=".ChatSettingsAdmin" />
         <activity android:name=".ChatSettingsMember" />
         <activity android:name=".ChatMemberProfile" />
-        <activity android:name=".SearchCreateGroup" />
+        <activity android:name=".CreateGroup" />
         <activity android:name=".SearchResults" />
         <activity android:name=".SignUp2" />
         <activity
-            android:name=".MainPage"
-            android:label="@string/title_activity_main_page"></activity>
+            android:name=".Home"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
