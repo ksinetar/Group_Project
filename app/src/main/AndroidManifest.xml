@@ -17,14 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUp" />
-        <activity android:name=".Profile" />
         <activity android:name=".Search" />
         <activity android:name=".Chat" />
         <activity android:name=".SearchGroupInfo" />
         <activity android:name=".ChatSettingsAdmin" />
         <activity android:name=".ChatSettingsMember" />
         <activity android:name=".ChatMemberProfile" />
-        <activity android:name=".CreateGroup" />
         <activity android:name=".SearchResults" />
         <activity android:name=".SignUp2" />
         <activity

@@ -35,7 +35,7 @@ tools:context="com.example.kevin.group_project.Chat">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Input"
+        android:hint="Message"
         android:id="@+id/input"
         />
 </android.support.design.widget.TextInputLayout>
