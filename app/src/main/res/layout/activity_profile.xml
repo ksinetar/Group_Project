@@ -7,10 +7,10 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="com.example.kevin.group_project.SignUp2">
+    tools:context="com.example.kevin.group_project.Profile">
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/editTextGroupName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editTextEmail"
+        android:layout_below="@+id/editTextDescription"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="City"
@@ -92,12 +92,12 @@
         tools:layout_editor_absoluteY="397dp" />
 
     <EditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/editTextDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editTextName"
+        android:layout_below="@+id/editTextGroupName"
         android:layout_marginTop="11dp"
         android:ems="10"
         android:hint="Email"
