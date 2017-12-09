@@ -15,7 +15,7 @@ public class Users {
     public String gender;
     public String fullname;
     public String city;
-    public String education;
+    public String university;
     public String dateofBirth;
     // public () profilePicture // need a data type to store picture
 
@@ -28,7 +28,7 @@ public class Users {
         this.gender = gender;
         this.fullname = fullname;
         this.city = city;
-        this.education = education;
+        this.university = education;
         this.dateofBirth = dateofBirth;
     }
 
@@ -64,12 +64,12 @@ public class Users {
         this.city = city;
     }
 
-    public String getEducation() {
-        return education;
+    public String getUniversity() {
+        return university;
     }
 
-    public void setEducation(String education) {
-        this.education = education;
+    public void setUniversity(String university) {
+        this.university = university;
     }
 
     public String getDateofBirth() {
