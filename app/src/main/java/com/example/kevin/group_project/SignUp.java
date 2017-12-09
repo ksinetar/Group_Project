@@ -41,7 +41,7 @@ public class SignUp extends Activity implements Button.OnClickListener {
         setContentView(R.layout.activity_sign_up);
 
         editTextPassword = findViewById(R.id.editTextPassword);
-        editTextEmail = findViewById(R.id.editTextDescription);
+        editTextEmail = findViewById(R.id.editTextEmail);
 
         buttonNext = findViewById(R.id.buttonNext);
 
