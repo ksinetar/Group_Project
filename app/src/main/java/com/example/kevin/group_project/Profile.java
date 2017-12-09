@@ -121,7 +121,8 @@ public class Profile extends Activity implements Button.OnClickListener {
         } else if (item.getItemId() == R.id.menu_log_out) {
             Intent intentLogOut = new Intent(this, Login.class);
             this.startActivity(intentLogOut);
-        } return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

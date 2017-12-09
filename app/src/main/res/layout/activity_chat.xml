@@ -11,45 +11,32 @@ android:paddingRight="@dimen/activity_horizontal_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
 tools:context="com.example.kevin.group_project.Chat">
 
-<android.support.design.widget.FloatingActionButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:id="@+id/fab"
-    android:tint="@android:color/white"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentLeft="true"
-    app:fabSize="mini" />
 
-<android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_toLeftOf="@id/fab"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentLeft="true">
+    <ListView
+        android:id="@+id/listViewFire"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="176dp" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/editTextChat"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Message"
-        android:id="@+id/input"
-        />
-</android.support.design.widget.TextInputLayout>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="Enter Message"
+        android:inputType="textPersonName" />
 
-<ListView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentLeft="true"
-    android:layout_above="@id/fab"
-    android:dividerHeight="16dp"
-    android:divider="@android:color/transparent"
-    android:id="@+id/list_of_messages"
-    android:layout_marginBottom="16dp"/>
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Send" />
 </RelativeLayout>

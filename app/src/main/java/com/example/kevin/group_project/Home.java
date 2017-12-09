@@ -55,6 +55,11 @@ public class Home extends Activity {
         } else if (item.getItemId() == R.id.menu_log_out) {
             Intent intentLogOut = new Intent(this, Login.class);
             this.startActivity(intentLogOut);
-        } return super.onOptionsItemSelected(item);
+        } else if (item.getItemId() == R.id.menu_chat){
+            Intent intentChat = new Intent(this, Chat.class);
+            this.startActivity(intentChat);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
