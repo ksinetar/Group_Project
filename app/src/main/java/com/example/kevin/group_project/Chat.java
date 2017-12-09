@@ -2,17 +2,24 @@ package com.example.kevin.group_project;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,97 +27,89 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 
-public class Chat extends Activity {
 
-    private FirebaseListAdapter<ChatMessage> adapter;
-    private ListView listOfMessages;
-    private String fullName = "";
+public class Chat extends Activity implements View.OnClickListener {
+
+    private EditText editTextChat;
+    private Button buttonSubmit;
+    private ListView listViewFire;
+
+    ArrayList<String> list = new ArrayList<>();
+    ArrayAdapter<String> adapter;
+
+    private DatabaseReference mFirebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        FloatingActionButton fab =
-                (FloatingActionButton)findViewById(R.id.fab);
+        editTextChat = findViewById(R.id.editTextChat);
+        buttonSubmit = findViewById(R.id.buttonSubmit);
+        listViewFire = findViewById(R.id.listViewFire);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        buttonSubmit.setOnClickListener(this);
+
+        adapter = new ArrayAdapter<String>(this, R.layout.chat_layout, R.id.textViewChat, list);
+        listViewFire.setAdapter(adapter);
+
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        //Change this to match our structure
+        DatabaseReference myRef = database.getReference("chat");
+
+        myRef.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onClick(View view) {
-                EditText input = (EditText)findViewById(R.id.input);
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String chat;
+                chat = dataSnapshot.getValue(String.class);
+                list.add(chat);
 
-                // Read the input field and push a new instance
-                // of ChatMessage to the Firebase database
-                FirebaseDatabase.getInstance()
-                        .getReference()
-                        .child("messages")
-                        .push()
-                        .setValue(new ChatMessage(input.getText().toString(),
-                                fullName)
-                        );
+                adapter.notifyDataSetChanged();
+            }
 
-                // Clear the input
-                input.setText("");
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
             }
-        });
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        final String user_id = mAuth.getCurrentUser().getUid();
-
-        DatabaseReference mDatabaseUser_fullname = FirebaseDatabase.getInstance().getReference().child("users").child(user_id).child("fullname");
-
-        mDatabaseUser_fullname.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                fullName = dataSnapshot.getValue(String.class);
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
             }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
         });
-
-        listOfMessages = (ListView) findViewById(R.id.list_of_messages);
-
-        displayChatMessages();
     }
 
-    private void displayChatMessages() {
-        Log.d("debugChatMessage", "displayChatMessages() called");
+    @Override
+    public void onClick(View view) {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+
+        String fullname = mFirebaseDatabase.child("users").child(uid).child("fullname").toString();
+
+        //Change Daves friends to actual
+        mFirebaseDatabase.child("groups").child("James Friends").child("info").child("messages").push()
+                .setValue(new ChatMessage(editTextChat.getText().toString(),fullname));
+
+        editTextChat.setText("");
 
 
-//Error is somewhere in Adapter not working
-        Query query = FirebaseDatabase.getInstance().getReference("messages");
-        FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
-              .setLayout(R.layout.message)
-               .setQuery(query, ChatMessage.class).build();
-
-        adapter = new FirebaseListAdapter<ChatMessage>(options) {
-
-            @Override
-            protected void populateView(View v, ChatMessage model, int position) {
-                // Get references to the views of message.xml
-                TextView messageText = (TextView) v.findViewById(R.id.message_text);
-                TextView messageUser = (TextView) v.findViewById(R.id.message_user);
-                TextView messageTime = (TextView) v.findViewById(R.id.message_time);
-
-                //Debugging tool
-                Log.d("debugChatMessage", "Message: " + model.getMessageText());
-
-                // Set their text
-                messageText.setText(model.getMessageText());
-                messageUser.setText(model.getMessageUser());
-
-                // Format the date before showing it
-                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
-                        model.getMessageTime()));
-            }
-        };
-
-        //Debugging tool, shouldnt have count = 0
-        Log.d("debugChatMessage", "Adapter Count: " + adapter.getCount());
-
-        listOfMessages.setAdapter(adapter);
     }
 }
