@@ -15,7 +15,7 @@ public class Users {
     public String gender;
     public String fullname;
     public String city;
-    public String education;
+    public String university;
     public String dateofBirth;
     // public () profilePicture // need a data type to store picture
 
@@ -23,12 +23,12 @@ public class Users {
     public Users() {
     }
 
-    public Users(String email, String gender, String fullname, String city, String education, String dateofBirth) {
+    public Users(String email, String gender, String fullname, String city, String university, String dateofBirth) {
         this.email = email;
         this.gender = gender;
         this.fullname = fullname;
         this.city = city;
-        this.education = education;
+        this.university = university;
         this.dateofBirth = dateofBirth;
     }
 
