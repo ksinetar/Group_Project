@@ -27,4 +27,14 @@
         <item>Profile</item>
     </string-array>
 
+
+    <string name="category_prompt">Choose a Category</string>
+
+    <string-array name="category_arrays">
+        <item>Select a Category...</item>
+        <item>Football</item>
+        <item>Baseball</item>
+        <item>Soccer</item>
+    </string-array>
+
 </resources>

@@ -13,13 +13,12 @@
         android:id="@+id/editTextGroupName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textViewName"
+        android:layout_toRightOf="@+id/textViewName"
         android:ems="10"
         android:hint="Group Name"
         android:inputType="textPersonName"
-        android:textSize="18sp"
         tools:layout_editor_absoluteX="50dp"
         tools:layout_editor_absoluteY="16dp" />
 
@@ -27,10 +26,13 @@
         android:id="@+id/spinnerCategory"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignLeft="@+id/editTextDescription"
+        android:layout_alignStart="@+id/editTextDescription"
         android:layout_below="@+id/editTextDescription"
-        android:layout_marginTop="29dp" />
+        android:layout_marginTop="11dp"
+        android:entries="@array/category_arrays"
+        android:prompt="@string/category_prompt"
+        android:text="Group Category" />
 
     <Button
         android:id="@+id/buttonCreateGroup"
@@ -52,14 +54,13 @@
         android:id="@+id/editTextDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignLeft="@+id/editTextGroupName"
+        android:layout_alignStart="@+id/editTextGroupName"
         android:layout_below="@+id/editTextGroupName"
         android:layout_marginTop="11dp"
         android:ems="10"
         android:hint="Group Description"
         android:inputType="textPersonName"
-        android:textSize="18sp"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="153dp" />
 

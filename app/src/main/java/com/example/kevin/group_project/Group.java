@@ -11,29 +11,35 @@ import java.util.Date;
 public class Group {
 
     //Prop
-    private double memberCount;
-    private double categoryRank;
-    private Date creationDate;
-    private String category;
+   // private double memberCount;
+   // private String category;
     private String groupName;
     private String groupDescription;
-    private Boolean privacy;
+    private String groupCategory;
+
     // private () groupPicture // need a data type to store picture
 
 
     public Group(){
     }
 
-    public Group(double memberCount, double categoryRank, Date creationDate, String category, String groupName, String groupDescription, Boolean privacy){
-        this.memberCount = memberCount;
-        this.categoryRank = categoryRank;
-        this.creationDate = creationDate;
-        this.category = category;
+    public Group(String groupName, String groupDescription, String groupCategory) {
         this.groupName = groupName;
         this.groupDescription = groupDescription;
-        this.privacy = privacy;
+        this.groupCategory = groupCategory;
 
+    }
 
+    public String getGroupName(){
+        return this.groupName;
+    }
+
+    public String getGroupDescription(){
+        return  this.groupDescription;
+    }
+
+    public String getGroupCategory() {
+        return this.groupCategory;
     }
 
 }
