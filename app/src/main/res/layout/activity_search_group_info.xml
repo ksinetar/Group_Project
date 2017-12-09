@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
     tools:context="com.example.kevin.group_project.SearchGroupInfo">
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/buttonJoinGroup"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#1bb710"
+        android:text="Join Group"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_editor_absoluteX="198dp"
+        tools:layout_editor_absoluteY="397dp" />
+
+    <TextView
+        android:id="@+id/textViewGroupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="TextView"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewGroupName"
+        android:layout_alignStart="@+id/textViewGroupName"
+        android:layout_below="@+id/textViewGroupName"
+        android:layout_marginTop="33dp"
+        android:text="TextView"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewDescription"
+        android:layout_alignStart="@+id/textViewDescription"
+        android:layout_below="@+id/textViewDescription"
+        android:layout_marginTop="38dp"
+        android:text="TextView"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewMemberCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewCategory"
+        android:layout_alignStart="@+id/textViewCategory"
+        android:layout_centerVertical="true"
+        android:text="TextView"
+        android:textSize="24sp" />
+
+
+</RelativeLayout>

@@ -23,7 +23,6 @@
         <activity android:name=".ChatSettingsAdmin" />
         <activity android:name=".ChatSettingsMember" />
         <activity android:name=".ChatMemberProfile" />
-        <activity android:name=".SearchResults" />
         <activity android:name=".SignUp2" />
         <activity
             android:name=".Home"

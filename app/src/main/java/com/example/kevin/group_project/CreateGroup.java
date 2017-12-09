@@ -16,8 +16,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -86,6 +89,10 @@ public class CreateGroup extends Activity implements Button.OnClickListener, Ada
     public void onClick(View view) {
 
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        final DatabaseReference groupRef = db.getReference("groups");
+
+        final String findGroup = editTextGroupName.getText().toString();
 
         if (editTextGroupName.getText().toString().isEmpty()) { // this is all validation that the editTexts are filled
             Toast.makeText(CreateGroup.this, "Please Fill Out All Fields",
@@ -94,14 +101,31 @@ public class CreateGroup extends Activity implements Button.OnClickListener, Ada
             Toast.makeText(CreateGroup.this, "Please Fill Out All Fields",
                     Toast.LENGTH_SHORT).show();
         } else if (view.getId() == R.id.buttonCreateGroup) { // these start a method if u click the corresponding (button)
-            createGroup();
+
+            groupRef.child(findGroup).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.getValue() == null) {
+                        createGroup();
+                    } else {
+                        Toast.makeText(CreateGroup.this, "Group Name Already Exists",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }
     }
 
     private void createGroup(){ // pushes to firebase
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mFirebaseDatabase.child("groups").push().child("info").setValue(newGroup());
+        mFirebaseDatabase.child("groups").child(editTextGroupName.getText().toString()).child("info").setValue(newGroup());
         Toast.makeText(CreateGroup.this, "Group Created Successfully",
                 Toast.LENGTH_SHORT).show();
 
