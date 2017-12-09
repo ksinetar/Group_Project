@@ -12,7 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,8 +27,10 @@ import java.util.ArrayList;
 
 public class SearchGroupInfo extends Activity implements Button.OnClickListener {
 
-    private TextView textViewGroupName, textViewDescription, textViewCategory, textViewMemberCount;
+    private TextView textViewGroupName, textViewDescription, textViewCategory;
     private Button buttonJoinGroup;
+
+    private String groupname;
 
     private DatabaseReference mFirebaseDatabase;
 
@@ -33,13 +39,42 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_group_info);
 
+        Intent intent = getIntent();
+        groupname = intent.getStringExtra("Group Name");
+
         textViewGroupName = (TextView) findViewById(R.id.textViewGroupName);
         textViewDescription = (TextView) findViewById(R.id.textViewDescription);
         textViewCategory = (TextView) findViewById(R.id.textViewCategory);
-        textViewMemberCount = (TextView) findViewById(R.id.textViewMemberCount);
 
         buttonJoinGroup = (Button) findViewById(R.id.buttonJoinGroup);
         buttonJoinGroup.setOnClickListener(this);
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mFirebaseDatabase.child("groups").child(groupname).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                long Count = dataSnapshot.getChildrenCount();
+                long i = 0;
+
+                for (DataSnapshot Lookup: dataSnapshot.getChildren()) {
+                    if (i == Count-1) {
+                        Group GroupLookup = Lookup.getValue(Group.class);
+                        textViewGroupName.setText(GroupLookup.getGroupName());
+                        textViewDescription.setText(GroupLookup.getGroupDescription());
+                        textViewCategory.setText(GroupLookup.getGroupCategory());
+                        break;
+                    }
+                    i++;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -75,6 +110,8 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
 
     @Override
     public void onClick(View view) {
-
+        //NEED TO ADD JOIN GROUP FUNCTIONALITY
+        Intent intentJoin = new Intent(this, Home.class);
+        this.startActivity(intentJoin);
     }
 }

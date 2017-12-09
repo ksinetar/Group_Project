@@ -34,12 +34,19 @@ public class Group {
         return this.groupName;
     }
 
+    public void setGroupName(String groupName) {this.groupName = groupName; }
+
     public String getGroupDescription(){
         return  this.groupDescription;
     }
 
+    public void setGroupDescription(String groupDescription) {this.groupDescription = groupDescription; }
+
     public String getGroupCategory() {
         return this.groupCategory;
     }
+
+    public void setGroupCategory(String groupCategory) {this.groupCategory = groupCategory; }
+
 
 }

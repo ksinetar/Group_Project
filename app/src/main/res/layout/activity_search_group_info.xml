@@ -28,45 +28,36 @@
 
     <TextView
         android:id="@+id/textViewGroupName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewDescription"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewGroupName"
         android:layout_alignStart="@+id/textViewGroupName"
         android:layout_below="@+id/textViewGroupName"
         android:layout_marginTop="33dp"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:textAlignment="center"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textViewCategory"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewDescription"
         android:layout_alignStart="@+id/textViewDescription"
         android:layout_below="@+id/textViewDescription"
         android:layout_marginTop="38dp"
-        android:text="TextView"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textViewMemberCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewCategory"
-        android:layout_alignStart="@+id/textViewCategory"
-        android:layout_centerVertical="true"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:textAlignment="center"
+        android:textSize="18sp" />
 
 
 </RelativeLayout>

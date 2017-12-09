@@ -119,8 +119,9 @@ public class Search extends Activity implements Button.OnClickListener {
             }
         } else if (view.getId() == R.id.buttonResult) {
            if (exists == "1") {
-               Intent GroupInfo = new Intent(this, SearchGroupInfo.class);
-               this.startActivity(GroupInfo);
+               Intent GroupNamePush = new Intent (this, SearchGroupInfo.class);
+               GroupNamePush.putExtra("Group Name", editTextGroup.getText().toString());
+               this.startActivity(GroupNamePush);
            } else {
 
            }
