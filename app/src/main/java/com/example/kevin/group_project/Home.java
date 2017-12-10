@@ -17,9 +17,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
-public class Home extends Activity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
+public class Home extends Activity implements View.OnClickListener{
+
+    private EditText editTextGroups;
+    private Button buttonGoGroups;
+    private ListView listViewGroups;
+    private TextView textViewGroups;
+
+    ArrayList<String> listGroup = new ArrayList<>();
+    ArrayAdapter<String> adapterGroup;
+
+    private DatabaseReference mFirebaseDatabase;
 
 
     @Override
@@ -27,6 +51,52 @@ public class Home extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        editTextGroups = findViewById(R.id.editTextGroups);
+        buttonGoGroups = findViewById(R.id.buttonGoGroups);
+        listViewGroups = findViewById(R.id.listViewGroups);
+
+        buttonGoGroups.setOnClickListener(this);
+
+        adapterGroup = new ArrayAdapter<String>(this, R.layout.grouplayout, R.id.textViewGroups, listGroup);
+        listViewGroups.setAdapter(adapterGroup);
+
+
+        // Write a message to the database
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        //Change this to match our structure
+        DatabaseReference myRef = database.getReference("groups");
+
+        myRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String group;
+                group = dataSnapshot.getValue(String.class);
+                listGroup.add(group);
+
+                adapterGroup.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -61,5 +131,10 @@ public class Home extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }
