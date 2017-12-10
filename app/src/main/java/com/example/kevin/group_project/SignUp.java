@@ -62,7 +62,6 @@ public class SignUp extends Activity implements Button.OnClickListener {
                 }
             }
         };
-
     }
 
     public void createAccount(String email, String password) {

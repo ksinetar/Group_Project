@@ -17,9 +17,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp2 extends Activity implements Button.OnClickListener {
 
-    private EditText editTextName, editTextUniversity, editTextCity, editTextDateofbirth;
+    private EditText editTextName, editTextUniversity, editTextCity, editTextDateofbirth, editTextGender;
     private Button buttonSignUp;
-    private Spinner spinnerGender;
+
 
     private String email, userID;
 
@@ -42,11 +42,7 @@ public class SignUp2 extends Activity implements Button.OnClickListener {
         buttonSignUp = findViewById(R.id.buttonSignUp);
         buttonSignUp.setOnClickListener(this);
 
-        spinnerGender = findViewById(R.id.spinnerGender);
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(SignUp2.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Gender));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGender.setAdapter(myAdapter);
+        editTextGender = findViewById(R.id.editTextGender);
 
     }
 
@@ -71,14 +67,7 @@ public class SignUp2 extends Activity implements Button.OnClickListener {
     }
 
     private Users getUser() {
-        String gender = "Male";
-        if (spinnerGender.getSelectedItemPosition() == 0) {
-            gender = "Male";
-        } else if (spinnerGender.getSelectedItemPosition() == 1) {
-            gender = "Female";
-        } else {
-            gender = "Other";
-        }
-        return new Users(email, gender, editTextName.getText().toString(), editTextCity.getText().toString(), editTextUniversity.getText().toString(), editTextDateofbirth.getText().toString());
+
+        return new Users(email, editTextGender.getText().toString(), editTextName.getText().toString(), editTextCity.getText().toString(), editTextUniversity.getText().toString(), editTextDateofbirth.getText().toString());
     }
 }

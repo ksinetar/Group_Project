@@ -42,7 +42,7 @@ public class Users {
         return  this.gender;
     }
 
-    public void setGender(String groupDescription) {this.gender = gender; }
+    public void setGender(String gender) {this.gender = gender; }
 
     public String getFullname() {return this.fullname;}
 
