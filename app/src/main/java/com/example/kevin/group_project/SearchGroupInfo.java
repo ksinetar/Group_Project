@@ -30,7 +30,7 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
     private TextView textViewGroupName, textViewDescription, textViewCategory;
     private Button buttonJoinGroup;
 
-    private String groupname;
+    private String groupname, foundName;
 
     private DatabaseReference mFirebaseDatabase;
 
@@ -75,8 +75,32 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String uid = user.getUid();
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mFirebaseDatabase.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+            foundName = dataSnapshot.child("fullname").getValue().toString();
+                Toast.makeText(SearchGroupInfo.this, foundName, Toast.LENGTH_SHORT).show();
+                mFirebaseDatabase.child("groups").child(groupname).child("users").setValue(foundName);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -108,10 +132,4 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
     }
 
 
-    @Override
-    public void onClick(View view) {
-        //NEED TO ADD JOIN GROUP FUNCTIONALITY
-        Intent intentJoin = new Intent(this, Home.class);
-        this.startActivity(intentJoin);
-    }
 }

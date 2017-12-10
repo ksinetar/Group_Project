@@ -42,9 +42,7 @@ public class Group {
 
     public void setGroupDescription(String groupDescription) {this.groupDescription = groupDescription; }
 
-    public String getGroupCategory() {
-        return this.groupCategory;
-    }
+    public String getGroupCategory() {return this.groupCategory;}
 
     public void setGroupCategory(String groupCategory) {this.groupCategory = groupCategory; }
 

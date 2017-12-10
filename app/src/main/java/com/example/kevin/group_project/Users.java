@@ -32,4 +32,33 @@ public class Users {
         this.dateofBirth = dateofBirth;
     }
 
+    public String getEmail(){
+        return this.email;
+    }
+
+    public void setEmail(String email) {this.email = email; }
+
+    public String getGender(){
+        return  this.gender;
+    }
+
+    public void setGender(String groupDescription) {this.gender = gender; }
+
+    public String getFullname() {return this.fullname;}
+
+    public void setFullname(String fullname) {this.fullname = fullname; }
+
+    public String getCity() {return this.city;}
+
+    public void setCity(String city) {this.city = city; }
+
+    public String getUniversity() {return this.university;}
+
+    public void setUniversity(String university) {this.university = university; }
+
+    public String getDateofBirth() {return this.dateofBirth;}
+
+    public void setDateofBirth(String dateofBirth) {this.dateofBirth = dateofBirth; }
+
 }
+
