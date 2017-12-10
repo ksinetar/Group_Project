@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -20,11 +21,10 @@ public class SignUp2 extends Activity implements Button.OnClickListener {
     private Button buttonSignUp;
     private Spinner spinnerGender;
 
-    private String email;
+    private String email, userID;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference mFirebaseDatabase;
-    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +64,13 @@ public class SignUp2 extends Activity implements Button.OnClickListener {
 
     private void uploadToFirebase(){
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
-        mFirebaseDatabase.child("users").child(mAuth.getCurrentUser().getUid()).setValue(getCurrentUser());
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        userID = user.getUid();
+        mFirebaseDatabase.child("users").child(userID).setValue(getUser());
     }
 
-    private Users getCurrentUser() {
+    private Users getUser() {
         String gender = "Male";
         if (spinnerGender.getSelectedItemPosition() == 0) {
             gender = "Male";

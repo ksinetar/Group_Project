@@ -90,7 +90,7 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
             public void onDataChange(DataSnapshot dataSnapshot) {
             foundName = dataSnapshot.child("fullname").getValue().toString();
                 Toast.makeText(SearchGroupInfo.this, foundName, Toast.LENGTH_SHORT).show();
-                mFirebaseDatabase.child("groups").child(groupname).child("users").child("name").setValue(foundName);
+                mFirebaseDatabase.child("groups").child(groupname).child("members").push().child("membername").setValue(foundName);
             }
 
             @Override
