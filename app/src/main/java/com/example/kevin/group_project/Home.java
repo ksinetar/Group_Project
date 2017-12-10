@@ -135,6 +135,11 @@ public class Home extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("groups");
+
+        myRef.push().setValue(editTextGroups.getText().toString());
+        editTextGroups.setText("");
 
     }
 }
