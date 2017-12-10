@@ -131,9 +131,6 @@ public class Home extends Activity implements View.OnClickListener, AdapterView.
         } else if (item.getItemId() == R.id.menu_log_out) {
             Intent intentLogOut = new Intent(this, Login.class);
             this.startActivity(intentLogOut);
-        } else if (item.getItemId() == R.id.menu_chat){
-            Intent intentChat = new Intent(this, Chat.class);
-            this.startActivity(intentChat);
         }
 
         return super.onOptionsItemSelected(item);
