@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,15 +33,18 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Home extends Activity implements View.OnClickListener{
+public class Home extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener{
 
     private EditText editTextGroups;
     private Button buttonGoGroups;
     private ListView listViewGroups;
     private TextView textViewGroups;
+
+    private String fullname;
 
     ArrayList<String> listGroup = new ArrayList<>();
     ArrayAdapter<String> adapterGroup;
@@ -53,50 +59,50 @@ public class Home extends Activity implements View.OnClickListener{
 
 //        editTextGroups = findViewById(R.id.editTextGroups);
 //        buttonGoGroups = findViewById(R.id.buttonGoGroups);
-//        listViewGroups = findViewById(R.id.listViewGroups);
-//
+        listViewGroups = findViewById(R.id.listViewGroups);
+        listViewGroups.setOnItemClickListener(this);
+
 //        buttonGoGroups.setOnClickListener(this);
 //
-//        adapterGroup = new ArrayAdapter<String>(this, R.layout.grouplayout, R.id.textViewGroups, listGroup);
-//        listViewGroups.setAdapter(adapterGroup);
 //
 //
-//        // Write a message to the database
-//        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-//
-//        //Change this to match our structure
-//        DatabaseReference myRef = database.getReference("groups");
-//
-//        myRef.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                String group;
-//                group = dataSnapshot.getValue(String.class);
-//                listGroup.add(group);
-//
-//                adapterGroup.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
+        // Write a message to the database
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        //Change this to match our structure
+        DatabaseReference myRef = database.getReference("users").child(mAuth.getCurrentUser().getUid()).child("groups");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot group : dataSnapshot.getChildren()) {
+                    listGroup.add(group.child("grouplist").getValue().toString());
+                }
+                adapterGroup = new ArrayAdapter<String>(Home.this, R.layout.grouplayout, R.id.textViewGroups, listGroup);
+                listViewGroups.setAdapter(adapterGroup);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //Change this to match our structure
+        DatabaseReference userRef = database.getReference("users").child(mAuth.getCurrentUser().getUid());
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                fullname = dataSnapshot.child("fullname").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -141,5 +147,13 @@ public class Home extends Activity implements View.OnClickListener{
         myRef.push().setValue(editTextGroups.getText().toString());
         editTextGroups.setText("");
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        Intent gotoChat = new Intent(Home.this, Chat.class);
+        gotoChat.putExtra("Group", listGroup.get(position));
+        gotoChat.putExtra("Fullname", fullname);
+        this.startActivity(gotoChat);
     }
 }

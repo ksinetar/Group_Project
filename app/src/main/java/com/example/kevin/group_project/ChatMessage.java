@@ -51,8 +51,8 @@ public class ChatMessage {
     //Overriding to string so we can print chat messages as strings
     @Override
     public String toString() {
-        return (this.getMessageText()+
-                " from: "+ this.getMessageUser() +
-                " Time Sent: "+ this.getMessageTime());
+        return (this.getMessageText()+"\n"
+                + this.getMessageUser() +"\n"
+                + this.getMessageTime());
     }
 }
