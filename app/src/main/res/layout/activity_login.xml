@@ -63,9 +63,9 @@
         android:layout_above="@+id/buttonRegister"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="19dp"
+        android:background="#2965C9"
         android:text="Log In"
         android:textColor="#ffffff"
-        android:background="#2965C9"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1"
@@ -79,9 +79,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="41dp"
+        android:background="#d1d1d1"
         android:text="Register"
         android:textColor="#444444"
-        android:background="#d1d1d1"
         tools:layout_editor_absoluteY="403dp" />
 
 
