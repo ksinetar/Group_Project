@@ -21,7 +21,7 @@ tools:context="com.example.kevin.group_project.Chat">
         android:layout_marginTop="176dp" />
 
     <EditText
-        android:id="@+id/editTextChat"
+        android:id="@+id/editTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

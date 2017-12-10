@@ -36,7 +36,7 @@ public class Chat extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        editTextChat = findViewById(R.id.editTextChat);
+        editTextChat = findViewById(R.id.editTextName);
         buttonSubmit = findViewById(R.id.buttonSubmit);
         listViewFire = findViewById(R.id.listViewFire);
 

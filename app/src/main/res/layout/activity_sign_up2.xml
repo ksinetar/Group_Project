@@ -10,7 +10,7 @@
     tools:context="com.example.kevin.group_project.SignUp2">
 
     <EditText
-        android:id="@+id/editTextChat"
+        android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editTextChat"
+        android:layout_below="@+id/editTextName"
         android:layout_marginTop="13dp"
         android:ems="10"
         android:hint="City"
