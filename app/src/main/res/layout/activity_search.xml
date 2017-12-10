@@ -21,7 +21,6 @@
         android:id="@+id/buttonSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/listViewSearch"
         android:layout_toEndOf="@+id/editTextGroup"
         android:layout_toRightOf="@+id/editTextGroup"
         android:text="Search" />

@@ -89,8 +89,9 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
             foundName = dataSnapshot.child("fullname").getValue().toString();
-                Toast.makeText(SearchGroupInfo.this, foundName, Toast.LENGTH_SHORT).show();
-                mFirebaseDatabase.child("groups").child(groupname).child("members").push().child("membername").setValue(foundName);
+                mFirebaseDatabase.child("groups").child(groupname).child("members").push().child("membername").setValue(foundName); // pushes user to groups directory
+                mFirebaseDatabase.child("users").child(uid).child("groups").push().child("grouplist").setValue(groupname); // pushes group to users directory
+                // ideally, we want to include an IF statement to ensure there are no duplicate members, but unsure how to deal with users that have same "fullname" (given current structure)
             }
 
             @Override
@@ -98,7 +99,9 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
 
             }
         });
-
+        Intent takeHome = new Intent(this, Home.class);
+        this.startActivity(takeHome);
+        Toast.makeText(this, "Successfully joined " + groupname, Toast.LENGTH_SHORT).show();
     }
 
 
