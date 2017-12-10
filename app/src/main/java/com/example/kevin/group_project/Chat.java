@@ -2,12 +2,15 @@ package com.example.kevin.group_project;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -26,10 +29,11 @@ public class Chat extends Activity implements View.OnClickListener {
     private Button buttonSubmit;
     private ListView listViewFire;
 
-    ArrayList<String> list = new ArrayList<>();
-    ArrayAdapter<String> adapter;
+    ArrayList<ChatMessage> list = new ArrayList<>();
+    ArrayAdapter<ChatMessage> adapter;
 
     private DatabaseReference mFirebaseDatabase;
+    private DatabaseReference place;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,9 @@ public class Chat extends Activity implements View.OnClickListener {
 
         buttonSubmit.setOnClickListener(this);
 
-        adapter = new ArrayAdapter<String>(this, R.layout.chat_layout, R.id.textViewChat, list);
+        adapter = new ArrayAdapter<ChatMessage>(this, R.layout.chat_layout, R.id.messageText, list);
         listViewFire.setAdapter(adapter);
+
 
 
         // Write a message to the database
@@ -52,12 +57,31 @@ public class Chat extends Activity implements View.OnClickListener {
         //Change this to match our structure
         DatabaseReference myRef = database.getReference("chat");
 
-        myRef.addChildEventListener(new ChildEventListener() {
+        //Add this in when testing stuff is removed
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //Need it to view p the same way it views myRef
+        DatabaseReference p = mFirebaseDatabase.child("groups").child("Birds").child("messages");
+
+        //Change this to p?
+        p.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String chat;
-                chat = dataSnapshot.getValue(String.class);
+
+                //Testing stuff
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
+
+                mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+
+                String fullname = mFirebaseDatabase.child("users").child(uid).child("fullname").toString();
+
+                ChatMessage chat;
+                chat = dataSnapshot.getValue(ChatMessage.class);
                 list.add(chat);
+
 
                 adapter.notifyDataSetChanged();
             }
@@ -94,12 +118,14 @@ public class Chat extends Activity implements View.OnClickListener {
 
         String fullname = mFirebaseDatabase.child("users").child(uid).child("fullname").toString();
 
-        //Change Daves friends to actual
-        mFirebaseDatabase.child("groups").child("Jake's Friends").child("info").child("messages").push()
-                .setValue(new ChatMessage(editTextChat.getText().toString(),fullname));
+
+        place = mFirebaseDatabase.child("groups").child("Birds").child("messages");
+        place.push().setValue(new ChatMessage(editTextChat.getText().toString(),fullname));
 
         editTextChat.setText("");
-
-
     }
+
+    //Use this to convert date for display
+    //String date = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new java.util.Date (epoch*1000));
+
 }

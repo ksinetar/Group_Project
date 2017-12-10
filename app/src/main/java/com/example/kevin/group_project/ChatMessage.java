@@ -1,6 +1,9 @@
 package com.example.kevin.group_project;
 
 import android.app.Activity;
+
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class ChatMessage {
@@ -43,5 +46,13 @@ public class ChatMessage {
 
     public void setMessageTime(long messageTime) {
         this.messageTime = messageTime;
+    }
+
+    //Overriding to string so we can print chat messages as strings
+    @Override
+    public String toString() {
+        return (this.getMessageText()+
+                " from: "+ this.getMessageUser() +
+                " Time Sent: "+ this.getMessageTime());
     }
 }

@@ -51,52 +51,52 @@ public class Home extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        editTextGroups = findViewById(R.id.editTextGroups);
-        buttonGoGroups = findViewById(R.id.buttonGoGroups);
-        listViewGroups = findViewById(R.id.listViewGroups);
-
-        buttonGoGroups.setOnClickListener(this);
-
-        adapterGroup = new ArrayAdapter<String>(this, R.layout.grouplayout, R.id.textViewGroups, listGroup);
-        listViewGroups.setAdapter(adapterGroup);
-
-
-        // Write a message to the database
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-        //Change this to match our structure
-        DatabaseReference myRef = database.getReference("groups");
-
-        myRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String group;
-                group = dataSnapshot.getValue(String.class);
-                listGroup.add(group);
-
-                adapterGroup.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        editTextGroups = findViewById(R.id.editTextGroups);
+//        buttonGoGroups = findViewById(R.id.buttonGoGroups);
+//        listViewGroups = findViewById(R.id.listViewGroups);
+//
+//        buttonGoGroups.setOnClickListener(this);
+//
+//        adapterGroup = new ArrayAdapter<String>(this, R.layout.grouplayout, R.id.textViewGroups, listGroup);
+//        listViewGroups.setAdapter(adapterGroup);
+//
+//
+//        // Write a message to the database
+//        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+//
+//        //Change this to match our structure
+//        DatabaseReference myRef = database.getReference("groups");
+//
+//        myRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                String group;
+//                group = dataSnapshot.getValue(String.class);
+//                listGroup.add(group);
+//
+//                adapterGroup.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     @Override
