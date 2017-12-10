@@ -101,16 +101,14 @@ public class CreateGroup extends Activity implements Button.OnClickListener, Ada
             Toast.makeText(CreateGroup.this, "Please Fill Out All Fields",
                     Toast.LENGTH_SHORT).show();
         } else if (view.getId() == R.id.buttonCreateGroup) { // these start a method if u click the corresponding (button)
-
             groupRef.child(findGroup).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.getValue() == null) {
-                        createGroup();
-                    } else {
-                        Toast.makeText(CreateGroup.this, "Group Name Already Exists",
+                    if (dataSnapshot.getValue() != null) {
+                        Toast.makeText(CreateGroup.this, "Group Name Already Exists", // for some reason this happens all the time
                                 Toast.LENGTH_SHORT).show();
-
+                    } else if (dataSnapshot.getValue() == null) {
+                        createGroup();
                     }
                 }
 
@@ -128,7 +126,8 @@ public class CreateGroup extends Activity implements Button.OnClickListener, Ada
         mFirebaseDatabase.child("groups").child(editTextGroupName.getText().toString()).child("info").setValue(newGroup());
         Toast.makeText(CreateGroup.this, "Group Created Successfully",
                 Toast.LENGTH_SHORT).show();
-
+        Intent takeHome = new Intent(this, Home.class);
+        this.startActivity(takeHome);
     }
 
     private String itemClicked;
