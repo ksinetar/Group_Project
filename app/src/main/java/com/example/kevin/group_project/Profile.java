@@ -1,7 +1,10 @@
 package com.example.kevin.group_project;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -11,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +38,24 @@ public class Profile extends Activity implements Button.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        final ActionBar actionBar = getActionBar();
+
+        // actionBar
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        // titleTextView
+        TextView titleTextView = new TextView(actionBar.getThemedContext());
+        titleTextView.setText("Profile");
+        titleTextView.setPadding(60, 30, 0, 0);
+        titleTextView.setTextColor(Color.WHITE);
+        titleTextView.setTextSize(1, 18);
+
+        // Add titleTextView into ActionBar
+        actionBar.setCustomView(titleTextView);
+
+        ActionBar bar = getActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2965C9")));
 
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextCity = (EditText) findViewById(R.id.editTextCity);

@@ -1,5 +1,6 @@
 package com.example.kevin.group_project;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +34,9 @@ public class Login extends Activity implements Button.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
 
         edittextusername = findViewById(R.id.edittextusername);
         edittextpassword = findViewById(R.id.edittextpassword);

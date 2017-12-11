@@ -1,7 +1,10 @@
 package com.example.kevin.group_project;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -47,6 +50,24 @@ public class Chat extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        final ActionBar actionBar = getActionBar();
+
+        // actionBar
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        // titleTextView
+        TextView titleTextView = new TextView(actionBar.getThemedContext());
+        titleTextView.setText("Chat");
+        titleTextView.setPadding(60, 30, 0, 0);
+        titleTextView.setTextColor(Color.WHITE);
+        titleTextView.setTextSize(1, 18);
+
+        // Add titleTextView into ActionBar
+        actionBar.setCustomView(titleTextView);
+
+        ActionBar bar = getActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2965C9")));
 
         Intent intent =getIntent();
         Group = intent.getStringExtra("Group");

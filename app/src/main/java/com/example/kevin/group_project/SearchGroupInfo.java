@@ -1,7 +1,10 @@
 package com.example.kevin.group_project;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,6 +41,24 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_group_info);
+
+        final ActionBar actionBar = getActionBar();
+
+        // actionBar
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        // titleTextView
+        TextView titleTextView = new TextView(actionBar.getThemedContext());
+        titleTextView.setText("Group Information");
+        titleTextView.setPadding(60, 30, 0, 0);
+        titleTextView.setTextColor(Color.WHITE);
+        titleTextView.setTextSize(1, 18);
+
+        // Add titleTextView into ActionBar
+        actionBar.setCustomView(titleTextView);
+
+        ActionBar bar = getActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2965C9")));
 
         Intent intent = getIntent();
         groupname = intent.getStringExtra("Group Name");

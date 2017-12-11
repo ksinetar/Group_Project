@@ -38,9 +38,12 @@
 
     <string-array name="category_arrays">
         <item>Select a Category...</item>
-        <item>Football</item>
-        <item>Baseball</item>
-        <item>Soccer</item>
+        <item>Business</item>
+        <item>Finance</item>
+        <item>Politics</item>
+        <item>Random</item>
+        <item>Sports</item>
+        <item>Technology</item>
     </string-array>
 
 </resources>

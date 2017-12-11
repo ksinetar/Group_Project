@@ -1,10 +1,13 @@
 package com.example.kevin.group_project;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -57,15 +60,32 @@ public class Home extends Activity implements View.OnClickListener, AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        final ActionBar actionBar = getActionBar();
+
+        // actionBar
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        // titleTextView
+        TextView titleTextView = new TextView(actionBar.getThemedContext());
+        titleTextView.setText("Home");
+        titleTextView.setPadding(60, 30, 0, 0);
+        titleTextView.setTextColor(Color.WHITE);
+        titleTextView.setTextSize(1, 18);
+
+        // Add titleTextView into ActionBar
+        actionBar.setCustomView(titleTextView);
+
+        ActionBar bar = getActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2965C9")));
+
 //        editTextGroups = findViewById(R.id.editTextGroups);
 //        buttonGoGroups = findViewById(R.id.buttonGoGroups);
         listViewGroups = findViewById(R.id.listViewGroups);
         listViewGroups.setOnItemClickListener(this);
 
 //        buttonGoGroups.setOnClickListener(this);
-//
-//
-//
+
+
         // Write a message to the database
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
