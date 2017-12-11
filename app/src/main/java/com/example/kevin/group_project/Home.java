@@ -78,7 +78,7 @@ public class Home extends Activity implements View.OnClickListener, AdapterView.
         ActionBar bar = getActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2965C9")));
 
-//        editTextGroups = findViewById(R.id.editTextGroups);
+//        editTextGroups = findViewByIda(R.id.editTextGroups);
 //        buttonGoGroups = findViewById(R.id.buttonGoGroups);
         listViewGroups = findViewById(R.id.listViewGroups);
         listViewGroups.setOnItemClickListener(this);
