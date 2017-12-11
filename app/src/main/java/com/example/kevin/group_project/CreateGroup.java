@@ -16,6 +16,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +33,8 @@ public class CreateGroup extends Activity implements Button.OnClickListener, Ada
     private DatabaseReference mFirebaseDatabase;
     private Spinner spinnerCategory;
     private TextView textViewName, textViewDescription, textViewCategory;
+
+    private String groupname, foundName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +130,28 @@ public class CreateGroup extends Activity implements Button.OnClickListener, Ada
         mFirebaseDatabase.child("groups").child(editTextGroupName.getText().toString()).child("info").setValue(newGroup());
         Toast.makeText(CreateGroup.this, "Group Created Successfully",
                 Toast.LENGTH_SHORT).show();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String uid = user.getUid();
+        groupname = editTextGroupName.getText().toString();
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mFirebaseDatabase.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                foundName = dataSnapshot.child("fullname").getValue().toString();
+                mFirebaseDatabase.child("groups").child(groupname).child("members").push().child("membername").setValue(foundName); // pushes user to groups directory
+                mFirebaseDatabase.child("users").child(uid).child("groups").push().child("grouplist").setValue(groupname); // pushes group to users directory
+                // ideally, we want to include an IF statement to ensure there are no duplicate members, but unsure how to deal with users that have same "fullname" (given current structure)
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         Intent takeHome = new Intent(this, Home.class);
         this.startActivity(takeHome);
     }

@@ -25,11 +25,11 @@ tools:context="com.example.kevin.group_project.Chat">
 
     <EditText
         android:id="@+id/editTextName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/buttonSubmit"
+        android:layout_toStartOf="@+id/buttonSubmit"
         android:ems="10"
         android:hint="Message"
         android:inputType="textPersonName" />
@@ -38,9 +38,11 @@ tools:context="com.example.kevin.group_project.Chat">
         android:id="@+id/buttonSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="Send" />
+        android:layout_alignBottom="@+id/editTextName"
+        android:layout_alignEnd="@+id/listViewFire"
+        android:layout_alignRight="@+id/listViewFire"
+        android:background="#2965C9"
+        android:text="Send"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>

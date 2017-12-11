@@ -11,6 +11,16 @@
     tools:context="com.example.kevin.group_project.Home">
 
 
+    <TextView
+        android:id="@+id/textViewGroups"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current Groups"
+        android:textAlignment="center"
+        android:textColor="#2965C9"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
     <ListView
         android:id="@+id/listViewGroups"
         android:layout_width="match_parent"
