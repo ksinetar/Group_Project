@@ -126,7 +126,7 @@ public class CreateGroup extends Activity implements Button.OnClickListener, Ada
             Toast.makeText(CreateGroup.this, "Please Fill Out All Fields",
                     Toast.LENGTH_SHORT).show();
         } else if (view.getId() == R.id.buttonCreateGroup) { // these start a method if u click the corresponding (button)
-            groupRef.child(findGroup).addValueEventListener(new ValueEventListener() {
+            groupRef.child(findGroup).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.getValue() != null) {
