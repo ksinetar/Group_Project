@@ -62,6 +62,7 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
 
         Intent intent = getIntent();
         groupname = intent.getStringExtra("Group Name");
+       // Toast.makeText(this, groupname, Toast.LENGTH_SHORT).show();
 
         textViewGroupName = (TextView) findViewById(R.id.textViewGroupName);
         textViewDescription = (TextView) findViewById(R.id.textViewDescription);
@@ -72,22 +73,32 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
 
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mFirebaseDatabase.child("groups").child(groupname).addListenerForSingleValueEvent(new ValueEventListener() {
+        mFirebaseDatabase.child("groups").child(groupname).orderByChild("groupName").equalTo(groupname).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //long Count = dataSnapshot.getChildrenCount();
+                //long i = 0;
+                //Toast.makeText(SearchGroupInfo.this, dataSnapshot.getRef().toString(), Toast.LENGTH_LONG).show();
 
-                long Count = dataSnapshot.getChildrenCount();
-                long i = 0;
+
 
                 for (DataSnapshot Lookup: dataSnapshot.getChildren()) {
-                    if (i == Count-1) {
-                        Group GroupLookup = Lookup.getValue(Group.class);
-                        textViewGroupName.setText(GroupLookup.getGroupName());
-                        textViewDescription.setText(GroupLookup.getGroupDescription());
-                        textViewCategory.setText(GroupLookup.getGroupCategory());
-                        break;
-                    }
-                    i++;
+                    // if (i == Count-1) {
+                    // Toast.makeText(SearchGroupInfo.this, Lookup.getValue(String.class), Toast.LENGTH_SHORT).show();
+
+                    //String test1 = Lookup.child("groupCategory").getValue(String.class);
+                    //Toast.makeText(SearchGroupInfo.this, test1, Toast.LENGTH_SHORT).show();
+
+
+
+
+                      // Group GroupLookup = Lookup.getValue(Group.class);
+                        textViewGroupName.setText(Lookup.child("groupName").getValue(String.class));
+                        textViewDescription.setText(Lookup.child("groupDescription").getValue(String.class));
+                        textViewCategory.setText(Lookup.child("groupCategory").getValue(String.class));
+//                        break;
+                    // }
+                    // i++;
                 }
             }
 
@@ -96,6 +107,9 @@ public class SearchGroupInfo extends Activity implements Button.OnClickListener 
 
             }
         });
+
+
+
     }
 
     @Override
