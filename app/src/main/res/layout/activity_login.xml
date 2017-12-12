@@ -16,9 +16,13 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Viva"
+        android:text="hmu"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#2965c9"
-        android:textSize="60sp" />
+        android:textSize="60sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edittextusername"
@@ -32,7 +36,6 @@
         android:hint="Email"
         android:inputType="textPersonName"
         android:paddingBottom="20dp"
-        android:text="kevingay@umich.edu"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1"
@@ -51,7 +54,6 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingBottom="20dp"
-        android:text="phillies"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1"
